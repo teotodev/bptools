@@ -1,12 +1,14 @@
 # bptools
 ## monitor
-### requirements
-```
-pip install aiogram
-```
+### requirements  
   * DO NOT use active permission. Add a permission for eosio::regproducer and eosio::unregprod.
   * Adjust unlock-timeout of keosd config.
   * Unlock cleos wallet.  
+  * Python 3.7(for aiogram).
+  * Recommand to run on venv.
+```
+pip install aiogram
+```  
 ### run
 ```
 python3 monitor.py YOUR_CONFIG.json
