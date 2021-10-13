@@ -4,6 +4,9 @@
 ```
 pip install aiogram
 ```
+  * DO NOT use active permission. Add a permission for eosio::regproducer and eosio::unregprod.
+  * Adjust unlock-timeout of keosd config.
+  * Unlock cleos wallet.  
 ### run
 ```
 python3 monitor.py YOUR_CONFIG.json
