@@ -27,12 +27,12 @@ python3 monitor.py YOUR_CONFIG.json
             "url": "YOUR_WEBSITE",
             "location": 0,
             "permission": "YOUR_ACCOUNT@PERMISSION",
-                "count": 240
+            "count": 240
         },
         "unregproducer": {
             "enable": true,
             "permission": "YOUR_ACCOUNT@PERMISSION",
-                "count": 360
+            "count": 360
         }
     },
     "api": "API_NODE_URL",
