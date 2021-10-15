@@ -118,7 +118,7 @@ async def do_unregproducer():
     print('do_unregproducer')
     account = config['manage_bp']['account']    
     permission = config['manage_bp']['unregproducer']['permission']
-    cmd = f'cleos -u {config["api"]} system unregprod {account} -j {permission}'
+    cmd = f'cleos -u {config["api"]} system unregprod {account} -j -p {permission}'
     data = await run(cmd)
 
 
