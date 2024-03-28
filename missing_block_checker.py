@@ -55,7 +55,7 @@ async def check_missing_block_count(api_url, bp_name, exporter):
             await exporter(bp_data)
 
 
-async def scheduler(api_url, exporter, interval=60):
+async def scheduler(api_url, exporter, check_list=[], interval=60):
     while True:
         schedule = await get_schedule(api_url)
         if "error" in schedule:
@@ -67,6 +67,8 @@ async def scheduler(api_url, exporter, interval=60):
 
         bp_tasks = []    
         for bp in schedule:
+            if len(check_list) > 0 and bp["bp_name"] not in check_list:
+                continue
             task = asyncio.create_task(check_missing_block_count(api_url, bp["bp_name"], exporter), name=bp["bp_name"])
             bp_tasks.append(task)
         gather = asyncio.gather(*bp_tasks)
@@ -170,11 +172,12 @@ def shutdown(obj=None):
     logging.debug(f"shutdown> Completed.")
 
 
-async def main(api_url, tg_bot_token, tg_channel_id, scheduler_interval=126):
+async def main(api_url, tg_bot_token, tg_channel_id, check_list=[], scheduler_interval=126):
     data_queue = asyncio.Queue()
     scheduler_task = asyncio.create_task(
         scheduler(api_url=api_url, 
                   exporter=data_queue.put, 
+                  check_list=check_list,
                   interval=scheduler_interval), 
         name="scheduler")
     

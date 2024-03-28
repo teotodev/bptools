@@ -20,7 +20,9 @@ python missing_block_checker.py YOUR_CONFIG.json
 {
     "api_url": "https://testnet.telos.net",
     "scheduler_interval": 126,    
+    "check_list": [],
     "tg_bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
     "tg_channel_id": "YOUR_TELEGRAM_CHANNEL_ID"
 }
 ```
+The checker runs only for the bps if you append bp names to check_list.
