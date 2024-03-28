@@ -1,5 +1,5 @@
 # bptools
-## monitor
+## missing_block_checker
 ### requirements  
   * Python 3.7
 ### virtual environment
@@ -13,12 +13,13 @@ pip install -r requirements.txt
 ```  
 ### run
 ```
-python monitor.py YOUR_CONFIG.json
+python missing_block_checker.py YOUR_CONFIG.json
 ```
 ### example-config.json
 ```
 {
     "api_url": "https://testnet.telos.net",
+    "scheduler_interval": 126,    
     "tg_bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
     "tg_channel_id": "YOUR_TELEGRAM_CHANNEL_ID"
 }

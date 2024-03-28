@@ -87,6 +87,7 @@ async def http_post(getter, url, headers={"Content-Type": "application/json"}, i
 
 
 async def tg_bot_consumer(getter, bot, tg_channel_id, interval=1):
+    await bot.send_message(tg_channel_id, "Started.")
     while True:
         datas = []
         for x in range(21):
@@ -100,7 +101,7 @@ async def tg_bot_consumer(getter, bot, tg_channel_id, interval=1):
             await asyncio.sleep(interval)    
             continue
 
-        message = "\n".join([f"{data['owner']} {data['missed_blocks_per_rotation']} {data['delta']}"
+        message = "\n".join([f"{data['owner']} {data['missed_blocks_per_rotation']} +{data['delta']}"
                               for data in datas])
         #message = f"{data['owner']} {data['missed_blocks_per_rotation']}"
         await bot.send_message(tg_channel_id, message)
@@ -169,7 +170,7 @@ def shutdown(obj=None):
     logging.debug(f"shutdown> Completed.")
 
 
-async def main(api_url, tg_bot_token, tg_channel_id, scheduler_interval=60):
+async def main(api_url, tg_bot_token, tg_channel_id, scheduler_interval=126):
     data_queue = asyncio.Queue()
     scheduler_task = asyncio.create_task(
         scheduler(api_url=api_url, 

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-kill `cat monitor.pid`
+kill `cat missing_block_checker.pid`
