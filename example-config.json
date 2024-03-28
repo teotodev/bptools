@@ -1,0 +1,5 @@
+{
+    "api_url": "https://testnet.telos.net",
+    "tg_bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
+    "tg_channel_id": "YOUR_TELEGRAM_CHANNEL_ID"
+}
