@@ -51,7 +51,7 @@ async def check_missing_block_count(api_url, bp_name, exporter):
             
             bp_data = result["rows"][0]
             missing_count = bp_data["missed_blocks_per_rotation"]            
-            logging.debug(f"check_missing_block_count> {bp_name} {missing_count}")
+            logging.debug(f"check_missing_block_count> {bp_name:12} {missing_count:3d}")
             await exporter(bp_data)
 
 
@@ -103,10 +103,11 @@ async def tg_bot_consumer(getter, bot, tg_channel_id, interval=1):
             await asyncio.sleep(interval)    
             continue
 
-        message = "\n".join([f"{data['owner']} {data['missed_blocks_per_rotation']} +{data['delta']}"
-                              for data in datas])
+        delta_str = f"+{data['delta']}".rjust(4)
+        message = "\n".join([f"<pre>{data['owner']:12}, qty: {data['missed_blocks_per_rotation']:3d}, delta: {delta_str}</pre>"
+                              for data in datas])        
         #message = f"{data['owner']} {data['missed_blocks_per_rotation']}"
-        await bot.send_message(tg_channel_id, message)
+        await bot.send_message(tg_channel_id, message, parse_mode="HTML")
         #data_queue.task_done()
         await asyncio.sleep(interval)
 
