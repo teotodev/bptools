@@ -143,7 +143,6 @@ async def data_handler(getter, receivers, interval=0.01):
                 prev_datas[owner] = quantity
                 delta = quantity
             else:
-                prev_datas[owner] = quantity                
                 if prev_datas[owner] < quantity:
                     delta = quantity - prev_datas[owner]
                 elif prev_datas[owner] == quantity:  # TODO check round.
@@ -151,6 +150,7 @@ async def data_handler(getter, receivers, interval=0.01):
                     continue            
                 else:
                     delta = quantity
+                prev_datas[owner] = quantity
         else:
             logging.error("quantity < 0")
             await asyncio.sleep(interval)
